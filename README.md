@@ -1,33 +1,24 @@
-# Week 3 Tower Defense Assignment (Isolated)
+Defend your home base from waves of incoming flying and crawling enemies. You must survive with at least 1 HP remaining.
 
-## Project Structure
-- **Scripts**: `Assets/TowerDefense/Scripts/` (All TD scripts use `TD_` prefix for managers/turrets)
-- **Editor Tool**: `Assets/TowerDefense/Editor/UIBuilder.cs`
-- **GP3 Scripts**: Your original `Assets/Scripts/` (GP3) have been reverted and left untouched.
+The Core Loop
+Incoming Waves: Enemies spawn at two locations (Yellow for arching paths, Cyan for snake-like paths).
+Autonomous Defense: Your Turrets (Fire, Shotgun, and Sniper) will automatically track and engage any enemy that enters their range.
 
-## Requirements Implemented
-- [x] Enemy Spawning (Quadratic & Cubic Lerp)
-- [x] Player HP System (20 HP, Damage on enemy reach)
-- [x] HP Bar UI (Ghost HP with casing)
-- [x] Coin System (Spawn on death, move to UI, lerp value)
-- [x] Turret Integration (One-hit kill, no physics)
-- [x] Fail UI on 0 HP
-- [x] Builder Unit (Max 3 builds, detection highlight)
-- [x] Wire Specialist (Max 8 wires)
-- [x] Wiring Connectivity System
+Survival:
+Each enemy that manages to reach the Target Location will deduct 1 HP from your life total.
+You start with 20 HP.
+Watch the HP Bar: If you take damage, the green bar drops instantly, and a yellow "ghost bar" will trail behind it.
 
-## How to Play
-1. Open the project in Unity.
-2. Go to `Tools > Build Tower Defense UI` to generate the Canvas.
-3. Set up two Spawn Points and one Target Location in the scene.
-4. Assign these to the `WaveManager` component.
-5. Pre-place some turrets.
-6. Press Play!
+Collection: When an enemy is destroyed, they drop a Gold Coin. These coins fly through the air toward your HUD, increasing your score.
 
-## Video Demonstration
-[Watch the Demonstration Video](YOUR_VIDEO_LINK_HERE)
+Victory & Defeat
+Win: Successfully destroy all enemies in the wave without your HP hitting zero.
+Game Over: If your HP drops to 0, the game freezes and the Fail Screen appears.
+Quick Restart: If you lose, simply press the 'R' key to reset the level and try a different turret setup or path configuration.
 
-## Technical Notes
-- **Strictly Math**: All movement and easing use custom math functions in `EasingFunctions.cs` and `LerpMovement.cs`.
-- **No Physics**: Collision detection uses custom circle/cone math in `MathCollision.cs`.
-- **Ghost HP**: Uses an exponential ease-out to create a smooth trailing effect behind the main health bar.
+Key Controls
+Movement: Use W, A, S, D to navigate the arena and view the action from different angles.
+Restart: Press R on the Game Over screen to play again.
+
+Week 3 Assignment video: https://drive.google.com/file/d/1wF9-4RMoeeowDuGKmrk1cmepuojrMgX3/view?usp=sharing
+Week 4 Assignment video: https://drive.google.com/file/d/1wF9-4RMoeeowDuGKmrk1cmepuojrMgX3/view?usp=sharing
