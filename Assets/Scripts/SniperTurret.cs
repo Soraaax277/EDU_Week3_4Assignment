@@ -26,14 +26,23 @@ public class SniperTurret : BaseTurret
     {
         if (!canFire) return;
 
+        Transform target = GetClosestEnemy();
+
+        if (target == null)
+        {
+            rangeRenderer.positionCount = 0;
+            return;
+        }
+
+        Vector3 targetPos = target.position;
         DrawLine(transform.position, transform.forward, range);
         
-        TrackPlayer(playerPos, deltaTime);
+        TrackTarget(targetPos, deltaTime);
 
         float totalThickness = thickness + 0.5f; 
-        bool playerInSights = MathCollision.IsPointNearLine(playerPos, transform.position, transform.forward, range, totalThickness);
+        bool enemyInSights = MathCollision.IsPointNearLine(targetPos, transform.position, transform.forward, range, totalThickness);
 
-        if (playerInSights)
+        if (enemyInSights)
         {
             fireTimer -= deltaTime;
             if (fireTimer <= 0)

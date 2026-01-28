@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4834198418985974440}
   - component: {fileID: 2654485795862413188}
   - component: {fileID: 2088974674904974059}
-  - component: {fileID: 3728653802544054732}
+  - component: {fileID: 886108984099773340}
   m_Layer: 0
   m_Name: ProjectileTemplate
   m_TagString: Untagged
@@ -91,7 +91,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3728653802544054732
+--- !u!114 &886108984099773340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,9 +100,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1970824563368013882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353e16e057a6b95498e2a7a0bc62f403, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c8a6b38a30a87b4d9c85b1f625ca67a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::TD_Projectile
   velocity: {x: 0, y: 0, z: 0}
   radius: 0.2
   isActive: 1

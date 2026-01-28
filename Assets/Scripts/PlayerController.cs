@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float radius = 0.5f;
     
-    private Vector2 moveInput;
     private bool isDead = false;
 
     void Update()

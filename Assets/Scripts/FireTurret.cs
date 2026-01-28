@@ -24,13 +24,22 @@ public class FireTurret : BaseTurret
     {
         if (!canFire) return;
 
+        Transform target = GetClosestEnemy();
+        
+        if (target == null) 
+        {
+            rangeRenderer.positionCount = 0; 
+            return;
+        }
+
+        Vector3 targetPos = target.position;
         DrawCone(transform.position, transform.forward, range, coneAngle);
         
-        TrackPlayer(playerPos, deltaTime);
+        TrackTarget(targetPos, deltaTime);
 
-        bool playerInCone = MathCollision.IsPointInCone(playerPos, transform.position, transform.forward, range, coneAngle);
+        bool enemyInCone = MathCollision.IsPointInCone(targetPos, transform.position, transform.forward, range, coneAngle);
 
-        if (playerInCone)
+        if (enemyInCone)
         {
             fireTimer -= deltaTime;
             if (fireTimer <= 0)

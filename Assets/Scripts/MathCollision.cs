@@ -26,16 +26,12 @@ public static class MathCollision
 
     public static bool IsPointNearLine(Vector3 point, Vector3 lineStart, Vector3 lineDirection, float maxDistance, float thickness)
     {
-        Vector3 p1 = new Vector3(lineStart.x, 0, lineStart.z);
-        Vector3 p2 = new Vector3(point.x, 0, point.z);
-        Vector3 dir = new Vector3(lineDirection.x, 0, lineDirection.z).normalized;
-
-        Vector3 lineToPoint = p2 - p1;
-        float projection = Vector3.Dot(lineToPoint, dir);
+        Vector3 lineToPoint = point - lineStart;
+        float projection = Vector3.Dot(lineToPoint, lineDirection.normalized);
 
         if (projection < 0 || projection > maxDistance) return false;
 
-        Vector3 closestPoint = p1 + dir * projection;
-        return (p2 - closestPoint).sqrMagnitude <= (thickness * thickness);
+        Vector3 closestPoint = lineStart + lineDirection.normalized * projection;
+        return (point - closestPoint).sqrMagnitude <= (thickness * thickness);
     }
 }

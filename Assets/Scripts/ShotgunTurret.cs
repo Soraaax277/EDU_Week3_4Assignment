@@ -20,13 +20,22 @@ public class ShotgunTurret : BaseTurret
     {
         if (!canFire) return;
 
+        Transform target = GetClosestEnemy();
+
+        if (target == null)
+        {
+            rangeRenderer.positionCount = 0;
+            return;
+        }
+
+        Vector3 targetPos = target.position;
         DrawCone(transform.position, transform.forward, detectionRadius, spreadAngle);
 
-        TrackPlayer(playerPos, deltaTime);
+        TrackTarget(targetPos, deltaTime);
 
-        bool playerInRange = MathCollision.IsPointInCone(playerPos, transform.position, transform.forward, detectionRadius, spreadAngle);
+        bool enemyInRange = MathCollision.IsPointInCone(targetPos, transform.position, transform.forward, detectionRadius, spreadAngle);
 
-        if (playerInRange)
+        if (enemyInRange)
         {
             fireTimer -= deltaTime;
             if (fireTimer <= 0)

@@ -15,10 +15,30 @@ public abstract class BaseTurret : MonoBehaviour
     protected LineRenderer rangeRenderer;
     protected bool canFire = true;
 
-    protected void TrackPlayer(Vector3 playerPos, float deltaTime)
+    protected Transform GetClosestEnemy()
     {
-        Vector3 direction = (playerPos - transform.position).normalized;
-        direction.y = 0;
+        Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        Enemy closest = null;
+        float minDist = range;
+
+        foreach (var enemy in enemies)
+        {
+            if (enemy.CompareTag("Player")) continue;
+
+            float dist = (transform.position - enemy.transform.position).magnitude;
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = enemy;
+            }
+        }
+
+        return closest != null ? closest.transform : null;
+    }
+
+    protected void TrackTarget(Vector3 targetPos, float deltaTime)
+    {
+        Vector3 direction = (targetPos - transform.position).normalized;
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
